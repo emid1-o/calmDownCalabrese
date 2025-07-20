@@ -1,1 +1,55 @@
-<p>musicaslist works!</p>
+<br>
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <h3>Listagem de musicas</h3>
+
+                    <div class="direita">
+                        <button type="button" class="btn btn-primary btn-rounded" mdbRipple
+                            routerLink="/admin/musicas/new">Novo</button>
+                    </div>
+
+                    <table border="1" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @for (musica of lista; track $index) {
+                            <tr>
+                                <td>{{musica.id}}</td>
+                                <td>{{musica.nome}}</td>
+                                <td class="direita">
+
+                                    <button type="button" class="btn btn-primary btn-rounded" mdbRipple
+                                        routerLink="/admin/musicas/edit/{{musica.id}}">Editar</button>
+
+                                </td>
+                                <td>
+
+                                    <button type="button" class="btn btn-danger btn-rounded" mdbRipple
+                                        (click)="deletar()">Deletar</button>
+
+                                </td>
+                            </tr>
+
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
