@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MdbFormsModule } from 'mdb-angular-ui-kit/forms';
 import { Musica } from '../../../models/musica';
@@ -12,6 +12,9 @@ import Swal from 'sweetalert2';
   styleUrl: './musicasdetails.component.scss'
 })
 export class MusicasdetailsComponent {
+
+  @Input("musica") musica: Musica = new Musica(0, "");
+  @Output("retorno") retorno = new EventEmitter<any>(); 
 
   router = inject(ActivatedRoute);
   router2 = inject(Router);
@@ -29,8 +32,6 @@ export class MusicasdetailsComponent {
 
   }
 
-  musica: Musica = new Musica(0, "");
-
   save() {
     if (this.musica.id > 0) {
 
@@ -40,6 +41,7 @@ export class MusicasdetailsComponent {
         icon: "success",
         confirmButtonText: 'Ok'
       });
+      
       this.router2.navigate(["admin/musicas"], { state: { musicaEditada: this.musica } });
 
     } else {
@@ -53,6 +55,7 @@ export class MusicasdetailsComponent {
 
       this.router2.navigate(["admin/musicas"], { state: { musicaNova: this.musica } });
     }
+    this.retorno.emit(this.musica)
   }
 
 }

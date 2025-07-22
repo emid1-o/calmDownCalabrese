@@ -9,9 +9,14 @@
 
                     <h3>Listagem de musicas</h3>
 
-                    <div class="direita">
+                    <!-- <div class="direita">
                         <button type="button" class="btn btn-primary btn-rounded" mdbRipple
                             routerLink="/admin/musicas/new">Novo</button>
+                    </div> -->
+
+                    <div class="direita">
+                        <button type="button" class="btn btn-primary btn-rounded" mdbRipple
+                            (click)="new()">Novo</button>
                     </div>
 
                     <table border="1" class="table table-striped">
@@ -31,7 +36,7 @@
                                 <td class="direita">
 
                                     <button type="button" class="btn btn-primary btn-rounded" mdbRipple
-                                        routerLink="/admin/musicas/edit/{{musica.id}}">Editar</button>
+                                        (click)="edit(musica)">Editar</button>
 
                                 </td>
                                 <td>
@@ -53,3 +58,17 @@
 
     </div>
 </div>
+
+
+<ng-template #modalMusicaDetalhe>
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+    </div>
+    <div class="modal-body">
+
+        <app-musicasdetails [musica]="musicaEdit" (retorno)="retornoDetalhe($event)"></app-musicasdetails>
+
+    </div>
+   
+</ng-template>
